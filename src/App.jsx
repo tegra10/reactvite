@@ -1,50 +1,18 @@
-import { useState } from "react";
-import Use from "./components/Use.jsx";
-import Controle from "./components/Controle.jsx";
-import DataFlux from "./components/DataFlux.jsx";
-import Effect from './components/Effect.jsx'
-let showTitle = true;
-const todos = ["apprendre react", "developper en react", "s'exercer en react"];
-function App() {
-    const [name, setName] = useState("");
-    const handleShow = () => {
-        alert("je declenche un evenement!!");
-    };
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Comments from "./pages/Comments.jsx";
+import Carte from "./pages/Carte.jsx";
+import './styles/main.css'
+const App = () => {
     return (
         <>
-            <Use />
-            <Controle />
-            <DataFlux onHandle={setName} value={name} children>
-                {name}
-            </DataFlux>
-            <Title
-                couleur={"red"}
-                children
-                id="titre"
-                className="titre"
-                data-demo="demo"
-            >
-                <p>je suis l'enfant de Title</p>
-            </Title>
-            <button onClick={handleShow}>click</button>
-            {showTitle && <h1>je suis du jsx</h1>}
-            <Effect/>
-        </>
-    );
-}
-
-const Title = ({ couleur, children, ...props }) => {
-    //console.log(props);
-    return (
-        <>
-            <p style={{ color: couleur }} {...props}>
-                bonjour{children}
-            </p>
-            <ul>
-                {todos.map(todo => (
-                    <li key={todo}>{todo}</li>
-                ))}
-            </ul>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/comment" element={<Comments />} />
+                <Route path="/carte" element={<Carte />} />
+            </Routes>
         </>
     );
 };
